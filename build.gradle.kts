@@ -1,7 +1,7 @@
 plugins {
     id("java-gradle-plugin")
     id("maven-publish")
-    id("com.gradle.plugin-publish") version "1.0"
+    id("com.gradle.plugin-publish") version "1.0.0"
 }
 
 pluginBundle {
@@ -9,6 +9,7 @@ pluginBundle {
     vcsUrl = "https://github.com/HGuillemet/gradle-javacpp-libextract"
     tags = listOf("javacpp", "jlink", "jpms")
 }
+
 gradlePlugin {
     plugins {
         create("libextract") {
@@ -27,6 +28,9 @@ repositories {
     mavenLocal()
     mavenCentral()
     gradlePluginPortal()
+    maven {
+        url=uri("https://oss.sonatype.org/content/repositories/snapshots/")
+    }
 }
 
 dependencies {
