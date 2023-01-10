@@ -32,7 +32,7 @@ Groovy DSL:
 ```groovy
 plugins {
     id 'application'
-    id 'fr.apteryx.javacpp-libextract' version '0.1'
+    id 'fr.apteryx.javacpp-libextract' version '0.3'
 }
 
 repositories {
@@ -40,7 +40,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.bytedeco:opencv-platform:4.5.5-1.5.7'
+    implementation 'org.bytedeco:opencv-platform:4.6.0-1.5.8'
 }
 
 libraryExtractions {
@@ -55,7 +55,7 @@ Kotlin DSL:
 ```kotlin
 plugins {
     application
-    id("fr.apteryx.javacpp-libextract") version "0.1"
+    id("fr.apteryx.javacpp-libextract") version "0.3"
 }
 
 repositories {
@@ -63,7 +63,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.bytedeco:opencv-platform:4.5.5-1.5.7")
+    implementation("org.bytedeco:opencv-platform:4.6.0-1.5.8")
 }
 
 libraryExtractions {
