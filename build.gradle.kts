@@ -1,9 +1,9 @@
 plugins {
-    id("com.gradle.plugin-publish") version "1.1.0"
+    id("com.gradle.plugin-publish") version "1.2.0"
 }
 
 group = "fr.apteryx"
-version = "0.3"
+version = "0.4"
 
 gradlePlugin {
     website.set("https://github.com/HGuillemet/gradle-javacpp-libextract")
@@ -36,6 +36,6 @@ repositories {
 
 dependencies {
     implementation(gradleApi())
-    implementation("org.bytedeco:gradle-javacpp:1.5.8")
+    implementation("org.bytedeco:gradle-javacpp:1.5.9")
     implementation("org.javassist:javassist:3.29.2-GA")
 }

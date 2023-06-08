@@ -7,15 +7,14 @@ The JavaCPP loader takes care of extracting the native libraries into a cache di
 
 While this is practical during development, it is not the best solution when 
 run by the end user: the libraries should preferably be installed 
-in the installation directory instead of silently extracted into a hidden directory 
-of the user home that will never be cleaned.
-Also the jar files could contain libraries that are actually never used by the
+in the installation directory of your application instead of silently extracted into a
+hidden directory of the user home that will never be cleaned.
+Also, the jar files could contain libraries that are actually never used by the
 application.
 
 This Gradle plugin defines a task type, named `ExtractLibraries`. Its action 
-automatically populates a directory
-with the libraries used by the application. It relies on Javassist to
-determine the JavaCPP classes the applications depends on and extract only
+automatically populates a directory with the libraries used by the application. It relies on
+Javassist to determine the JavaCPP classes the applications depends on and extract only
 the necessary native libraries. An extraction can be performed for each source set.
 The plugin exposes a container extension called `libraryExtractions` 
 which must contain one configuration for each source set.
@@ -32,7 +31,7 @@ Groovy DSL:
 ```groovy
 plugins {
     id 'application'
-    id 'fr.apteryx.javacpp-libextract' version '0.3'
+    id 'fr.apteryx.javacpp-libextract' version '0.4'
 }
 
 repositories {
@@ -40,7 +39,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.bytedeco:opencv-platform:4.6.0-1.5.8'
+    implementation 'org.bytedeco:opencv-platform:4.7.0-1.5.9'
 }
 
 libraryExtractions {
@@ -55,7 +54,7 @@ Kotlin DSL:
 ```kotlin
 plugins {
     application
-    id("fr.apteryx.javacpp-libextract") version "0.3"
+    id("fr.apteryx.javacpp-libextract") version "0.4"
 }
 
 repositories {
@@ -63,7 +62,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.bytedeco:opencv-platform:4.6.0-1.5.8")
+    implementation("org.bytedeco:opencv-platform:4.7.0-1.5.9")
 }
 
 libraryExtractions {
