@@ -14,9 +14,10 @@ application.
 
 This Gradle plugin defines a task type, named `ExtractLibraries`. Its action 
 automatically populates a directory with the libraries used by the application. It relies on
-Javassist to determine the JavaCPP classes the applications depends on and extract only
+Javassist to determine the JavaCPP classes the applications depends on (that is, the classes
+annotated with `@org.bytedeco.javacpp.Properties`) and extract only
 the necessary native libraries. An extraction can be performed for each source set.
-The plugin exposes a container extension called `libraryExtractions` 
+The plugin exposes an extension called `libraryExtractions` 
 which must contain one configuration for each source set.
 The configurable options are the target directory (mandatory) and 
 whether the directory must be cleared before being populated or not (default is false).
@@ -31,7 +32,7 @@ Groovy DSL:
 ```groovy
 plugins {
     id 'application'
-    id 'fr.apteryx.javacpp-libextract' version '0.4'
+    id 'fr.apteryx.javacpp-libextract' version '0.5'
 }
 
 repositories {
@@ -54,7 +55,7 @@ Kotlin DSL:
 ```kotlin
 plugins {
     application
-    id("fr.apteryx.javacpp-libextract") version "0.4"
+    id("fr.apteryx.javacpp-libextract") version "0.5"
 }
 
 repositories {
