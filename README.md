@@ -28,6 +28,8 @@ For each such configuration, a task called `<sourceSet>ExtractLibraries`
 The `gradle-javacpp-platform` plugin is automatically applied in order to limit the dependencies
 to the host platform.
 
+Requires Java 11+.
+
 Examples are shown below:
 
 Groovy DSL:

@@ -5,6 +5,8 @@ plugins {
 group = "fr.apteryx"
 version = "0.6"
 
+java.sourceCompatibility = JavaVersion.VERSION_11
+
 gradlePlugin {
     website.set("https://github.com/HGuillemet/gradle-javacpp-libextract")
     vcsUrl.set("https://github.com/HGuillemet/gradle-javacpp-libextract")

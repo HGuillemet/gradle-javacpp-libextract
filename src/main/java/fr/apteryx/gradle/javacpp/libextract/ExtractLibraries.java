@@ -57,7 +57,6 @@ public abstract class ExtractLibraries extends DefaultTask {
         Files.createDirectories(targetPath);
         if (getClearTargetDirectory().getOrElse(true))
             clearDirectory(targetPath);
-        System.err.println(getRuntimeClasspath().getAsPath());
 
         BytecodeAnalyzer bca = new BytecodeAnalyzer(getRuntimeClasspath());
 
