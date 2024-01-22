@@ -7,6 +7,7 @@ import javassist.NotFoundException;
 import javassist.bytecode.ClassFile;
 import javassist.bytecode.ConstPool;
 import org.gradle.api.GradleException;
+import org.gradle.api.InvalidUserDataException;
 import org.gradle.api.file.FileCollection;
 import org.gradle.api.logging.Logger;
 import org.gradle.api.logging.Logging;
@@ -18,9 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 class BytecodeAnalyzer {
 
@@ -40,9 +39,14 @@ class BytecodeAnalyzer {
         }
     }
 
-    List<String> getJavaCPPDependencies(FileCollection classFiles) {
+    List<String> getJavaCPPDependencies(FileCollection classFiles, Set<String> additionalClasses) {
 
         HashSet<String> toAnalyze = new HashSet<>();
+        if (additionalClasses != null) {
+            // Empty class name will trigger exception in Javassist
+            if (additionalClasses.contains("")) throw new InvalidUserDataException("An additional class name cannot be the empty string");
+            toAnalyze.addAll(additionalClasses);
+        }
 
         classFiles.forEach(file -> {
             if (!file.isDirectory()) {

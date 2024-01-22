@@ -5,8 +5,8 @@ import org.gradle.api.GradleException;
 import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.file.FileCollection;
 import org.gradle.api.provider.Property;
+import org.gradle.api.provider.SetProperty;
 import org.gradle.api.tasks.*;
-import org.gradle.workers.WorkQueue;
 import org.gradle.workers.WorkerExecutor;
 
 import javax.inject.Inject;
@@ -24,6 +24,10 @@ public abstract class ExtractLibraries extends DefaultTask {
     @Input
     @Optional
     public abstract Property<Boolean> getClearTargetDirectory();
+
+    @Input
+    @Optional
+    public abstract SetProperty<String> getAdditionalClasses();
 
     @Classpath
     @InputFiles
@@ -57,7 +61,7 @@ public abstract class ExtractLibraries extends DefaultTask {
 
         BytecodeAnalyzer bca = new BytecodeAnalyzer(getRuntimeClasspath());
 
-        List<String> deps = bca.getJavaCPPDependencies(getClassFiles());
+        List<String> deps = bca.getJavaCPPDependencies(getClassFiles(), getAdditionalClasses().get());
 
         bca.loadClasses(deps, targetPath, getLogger());
         Files.deleteIfExists(targetPath.resolve(".lock"));

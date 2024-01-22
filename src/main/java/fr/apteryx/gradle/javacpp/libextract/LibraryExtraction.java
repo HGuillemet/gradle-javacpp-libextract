@@ -3,6 +3,8 @@ package fr.apteryx.gradle.javacpp.libextract;
 import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.provider.Property;
 
+import java.util.List;
+
 public abstract class LibraryExtraction {
     private final String name;
 
@@ -18,4 +20,6 @@ public abstract class LibraryExtraction {
     abstract public Property<Boolean> getClearTargetDirectory();
 
     abstract public DirectoryProperty getTargetDirectory();
+
+    abstract public List<String> getAdditionalClasses();
 }

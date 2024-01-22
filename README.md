@@ -17,14 +17,16 @@ automatically populates a directory with the libraries used by the application. 
 Javassist to determine the JavaCPP classes the applications depends on (that is, the classes
 annotated with `@org.bytedeco.javacpp.Properties`) and extract only
 the necessary native libraries. An extraction can be performed for each source set.
-The plugin exposes an extension called `libraryExtractions` 
+The plugin exposes an extension called `libraryExtraction` 
 which must contain one configuration for each source set.
-The configurable options are the target directory (mandatory) and 
-whether the directory must be cleared before being populated or not (default is false).
+The configurable options are the target directory (mandatory), 
+whether the directory must be cleared before being populated or not (default is false),
+and a list of additional classes, not belonging to the source set, to inspect with Javassist.
+For each such configuration, a task called `<sourceSet>ExtractLibraries`
+(e.g.`mainExtractLibraries`) is created.
+
 The `gradle-javacpp-platform` plugin is automatically applied in order to limit the dependencies
 to the host platform.
-For each of such configuration, a task called `<sourceSet>ExtractLibraries`
-(e.g.`mainExtractLibraries`) is created.
 
 Examples are shown below:
 
@@ -32,7 +34,7 @@ Groovy DSL:
 ```groovy
 plugins {
     id 'application'
-    id 'fr.apteryx.javacpp-libextract' version '0.5'
+    id 'fr.apteryx.javacpp-libextract' version '0.6'
 }
 
 repositories {
@@ -55,7 +57,7 @@ Kotlin DSL:
 ```kotlin
 plugins {
     application
-    id("fr.apteryx.javacpp-libextract") version "0.5"
+    id("fr.apteryx.javacpp-libextract") version "0.6"
 }
 
 repositories {

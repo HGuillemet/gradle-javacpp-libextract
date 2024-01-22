@@ -23,6 +23,7 @@ public class Plugin implements org.gradle.api.Plugin<Project> {
                   task.getSourceSet().set(sourceSet);
                   task.getTargetDirectory().set(libraryExtraction.getTargetDirectory());
                   task.getClearTargetDirectory().set(libraryExtraction.getClearTargetDirectory());
+                  task.getAdditionalClasses().set(libraryExtraction.getAdditionalClasses());
                 });
         });
     }
